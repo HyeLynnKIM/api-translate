@@ -42,9 +42,12 @@ def Table2Stirng(table: list, auth_key: str, src: str, trg: str):
 
     for row in table:
         for cell in row:
+            transformed_sentence += f'|{cell}'
+        transformed_sentence += '|,\n'
 
+    res = translation(msg=transformed_sentence[:-2], auth_key=auth_key, src=src, trg=trg)
 
-    return
+    return res + '|'
 
 def SelectFunction(msg: str, auth_key: str, src: str, trg: str):
     data_type = type(msg)
@@ -54,8 +57,9 @@ def SelectFunction(msg: str, auth_key: str, src: str, trg: str):
         print(result)
 
     elif data_type == type([[]]):
-        result = Table2Stirng(msg=msg2, auth_key=auth_key, src=src, trg=trg)
+        result = Table2Stirng(table=msg2, auth_key=auth_key, src=src, trg=trg)
         print(result)
+
 
 msg = '위의 표를 보고 답을 구하세요. 키가 150cm를 넘는 사람의 나이 평균과 몸무게가 20kg 이하인 사람의 키 평균을 곱해서 답을 구하세요.'
 msg2 = [['이름', '나이', '성별', '키', '몸무게', '특이사항'],
