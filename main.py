@@ -1,5 +1,5 @@
 import deepl
-auth_key = "878b24ac-401e-6800-d77c-29a8cae4aac7:fx"
+auth_key = "auth_key"
 
 def translation(msg: str, auth_key: str, src: str, trg: str):
     """
